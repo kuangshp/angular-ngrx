@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~12.1.2",
     "@angular/platform-browser-dynamic": "~12.1.2",
     "@angular/router": "~12.1.2",
+    "@ngrx/effects": "^12.3.0",
     "@ngrx/store": "^12.2.0",
     "ngrx-store-localstorage": "^12.0.0",
     "rxjs": "~6.6.0",
