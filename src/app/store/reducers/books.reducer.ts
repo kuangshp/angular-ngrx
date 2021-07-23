@@ -8,8 +8,8 @@ export interface BookState {
 export const initBookState: BookState = {
   bookList: [
     {
-      bookName: '三国演义',
-      author: '吴承恩',
+      bookName: '书籍一',
+      author: '牛逼的人',
       price: 20,
       createAt: '2021-10-10',
     },
