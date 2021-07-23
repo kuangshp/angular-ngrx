@@ -29,7 +29,7 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadPerson());
+    this.store.dispatch(loadPerson({ name: '你好' }));
   }
 
   delBook(item: IBook): void {

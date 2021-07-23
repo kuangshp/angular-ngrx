@@ -42,18 +42,27 @@ export interface IPerson {
   site_admin: boolean;
 }
 
+export interface ILoadProps {
+  name: string;
+}
 // 以下是另外一种写法
 export enum PersonActionTypes {
   LOAD_PERSON_START = '开始获取人物数据',
   LOAD_PERSON_SUCCESS = '成功获取人物数据',
 }
 // 定义获取数据的action
-export const loadPerson = createAction(PersonActionTypes.LOAD_PERSON_START);
+export const loadPerson = createAction(
+  PersonActionTypes.LOAD_PERSON_START,
+  // 需要传递的参数
+  props<ILoadProps>()
+);
+
 export const getSuccessPerson = createAction(
   PersonActionTypes.LOAD_PERSON_SUCCESS,
   props<{ person: IPerson[] }>()
 );
 
+// 另外一种写法
 export class LoadPerson implements Action {
   readonly type = PersonActionTypes.LOAD_PERSON_START;
   constructor(public name: string) {}

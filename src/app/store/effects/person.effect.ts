@@ -7,9 +7,10 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 import { RxjsCacheService } from 'src/app/rxjs.cache.service';
 import {
   getSuccessPerson,
+  ILoadProps,
   IPerson,
-  LoadPerson,
   loadPerson,
+  LoadPerson,
   PersonActionTypes,
 } from '../actions';
 
@@ -38,21 +39,21 @@ export class PersonEffect {
     // { dispatch: false }
   );
 
-  // loadPerson$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(loadPerson),
-  //       // 可以传递参数
-  //       mergeMap((action: Action) => {
-  //         console.log(action, '传递的参数');
-  //         // 请求数据接口,方法的时候可以传递参数
-  //         return this.rxjsCacheService.users.pipe(
-  //           // 处理请 成功返回的数据
-  //           map((person: IPerson[]) => getSuccessPerson({ person })),
-  //           catchError(() => EMPTY)
-  //         );
-  //       })
-  //     )
-  //   // { dispatch: false }
-  // );
+  loadPerson1$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(loadPerson),
+        // 可以传递参数
+        mergeMap((action: ILoadProps) => {
+          console.log(action.name, '传递的参数11');
+          // 请求数据接口,方法的时候可以传递参数
+          return this.rxjsCacheService.users.pipe(
+            // 处理请 成功返回的数据
+            map((person: IPerson[]) => getSuccessPerson({ person })),
+            catchError(() => EMPTY)
+          );
+        })
+      )
+    // { dispatch: false }
+  );
 }
