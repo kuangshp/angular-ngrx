@@ -24,3 +24,11 @@
 </table>
 
 <button (click)="addBook()">添加</button>
+
+<h3>here is the github user lists:</h3>
+<div *ngFor="let user of personList | async">
+  <div style=" display: flex;flex-direction: row;">
+    <div><strong>User Name:</strong> {{ user.login }} </div>
+    <div><strong>GitHub URL:</strong> {{ user.url }} </div>
+  </div>
+</div>

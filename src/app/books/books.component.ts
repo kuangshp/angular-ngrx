@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { addBook, delBook, IBook } from '../store/actions';
+import { addBook, delBook, IBook, IPerson, loadPerson } from '../store/actions';
 import { BookState } from '../store/reducers/books.reducer';
+import { PersonState } from '../store/reducers/person.reducer';
 import { getBookList } from '../store/slectors/books.selector';
 
 @Component({
@@ -12,8 +13,12 @@ import { getBookList } from '../store/slectors/books.selector';
 })
 export class BooksComponent implements OnInit {
   bookList: Observable<IBook[]>;
-  constructor(private readonly store: Store<{ book: BookState }>) {
+  personList: Observable<IPerson[]>;
+  constructor(
+    private readonly store: Store<{ book: BookState; person: PersonState }>
+  ) {
     this.bookList = store.pipe(select('book'), select('bookList'));
+    this.personList = store.pipe(select('person'), select('personList'));
     console.log(this.bookList, '查询的数据');
     // 或者使用下面这种方式
     store
@@ -23,7 +28,9 @@ export class BooksComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(loadPerson());
+  }
 
   delBook(item: IBook): void {
     console.log(item, '删除数据');
