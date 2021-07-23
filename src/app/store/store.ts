@@ -22,6 +22,8 @@ export function localStorageSyncReducer(
     storageKeySerializer: (key) => `cool_${key}`,
     // 刷新页面同步到页面中
     rehydrate: true,
+    // 默认是存储在localstorage
+    storage: window.sessionStorage,
   })(reducer);
 }
 export const metaReducers: MetaReducer<State>[] = [localStorageSyncReducer];
