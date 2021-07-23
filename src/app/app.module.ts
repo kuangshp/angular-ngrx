@@ -9,13 +9,7 @@ import { BooksComponent } from './books/books.component';
 import { AppStoreModule } from './store/store.module';
 @NgModule({
   declarations: [AppComponent, BooksComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    // StoreModule.forRoot({ count: counterReducer }),
-    AppStoreModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, AppStoreModule],
   providers: [RxjsCacheService],
   bootstrap: [AppComponent],
 })

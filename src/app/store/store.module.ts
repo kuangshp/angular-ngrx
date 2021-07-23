@@ -19,6 +19,9 @@ import { reducers, metaReducers } from './store';
     StoreDevtoolsModule.instrument({
       maxAge: 20,
       logOnly: environment.production,
+      features: {
+        persist: true,
+      },
     }),
   ],
 })
